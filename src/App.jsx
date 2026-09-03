@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState, createContext} from 'react'
 import './App.css'
 import Header from './components/UI/Header'
 import Hero from './components/UI/Hero'
@@ -6,12 +6,14 @@ import Footer from './components/UI/Footer'
 import Modal from './components/UI/Modal'
 import AddForm from './components/UI/AddForm'
 
+export const ItemContext = createContext(null)
+
 function App() {
   
   const [items, setItems] = useState([])
   const [isOpen, setIsOpen] = useState(false)
   const [modalType, setModalType] = useState(null)
-  console.log(items)
+  
 
   const addItem = (newItem) => {
     setItems(prev => [newItem, ...prev]);
@@ -19,6 +21,11 @@ function App() {
 
   const deleteItem = (idToDelete) => {
     setItems( prev => prev.filter(item => item.id !== idToDelete))
+  }
+
+
+  const toggleItem = () => {
+    
   }
 
   const updateItem = () => {} 
@@ -31,7 +38,9 @@ function App() {
 
       <div className='flex flex-col h-screen'>
           <Header />
-          <Hero items={items} setIsOpen={setIsOpen} setModalType={setModalType}/>
+          <ItemContext.Provider value={{items, setModalType, setIsOpen, deleteItem}}>
+            <Hero items={items} setIsOpen={setIsOpen} setModalType={setModalType}/>
+          </ItemContext.Provider>
           <Footer />
       </div>
     </>
