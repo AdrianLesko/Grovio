@@ -14,7 +14,8 @@ export default function AddForm ( { addItem, setIsOpen } ) {
       id: crypto.randomUUID(),
       title: itemName.trim(),
       quantity: Number(quantity) || 1,
-      isBought: false
+      isBought: false,
+      createdAt: Date.now()
     }
 
     addItem(newItem)

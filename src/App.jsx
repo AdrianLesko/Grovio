@@ -17,6 +17,12 @@ function App() {
     setItems(prev => [newItem, ...prev]);
   };
 
+  const deleteItem = (idToDelete) => {
+    setItems( prev => prev.filter(item => item.id !== idToDelete))
+  }
+
+  const updateItem = () => {} 
+
   return (
     <>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
