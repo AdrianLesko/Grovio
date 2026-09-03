@@ -12,12 +12,15 @@ export default function AddForm ( { addItem, setIsOpen } ) {
 
     const newItem = {
       id: crypto.randomUUID(),
-      title: itemName,
-      quantity: quantity,
+      title: itemName.trim(),
+      quantity: Number(quantity) || 1,
+      isBought: false
     }
 
     addItem(newItem)
     setIsOpen(false)
+    setItemName('')
+    setQuantity(1)
 
   }
 
@@ -28,7 +31,7 @@ export default function AddForm ( { addItem, setIsOpen } ) {
           <legend className='fieldset-legend text-xl'>Add New Item</legend>
 
           <label className='fieldset-label'>Item Name</label>
-          <input className='input w-full' type='text' value={itemName} onChange={(e) => setItemName(e.target.value)} />
+          <input className='input w-full' type='text' value={itemName} onChange={(e) => setItemName(e.target.value)} required />
 
           <label className='fieldset-label'>Quantity</label>
           <input className='input w-full' type='number' min='1' value={quantity} onChange={(e) => setQuantity(e.target.value)} />

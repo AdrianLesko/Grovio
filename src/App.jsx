@@ -25,7 +25,7 @@ function App() {
 
       <div className='flex flex-col h-screen'>
           <Header />
-          <Hero items={items} isOpen={isOpen} setIsOpen={setIsOpen} setModalType={setModalType}/>
+          <Hero items={items} setIsOpen={setIsOpen} setModalType={setModalType}/>
           <Footer />
       </div>
     </>
