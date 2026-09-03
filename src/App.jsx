@@ -25,7 +25,7 @@ function App() {
 
 
   const toggleItem = () => {
-    
+
   }
 
   const updateItem = () => {} 
@@ -39,7 +39,7 @@ function App() {
       <div className='flex flex-col h-screen'>
           <Header />
           <ItemContext.Provider value={{items, setModalType, setIsOpen, deleteItem}}>
-            <Hero items={items} setIsOpen={setIsOpen} setModalType={setModalType}/>
+            <Hero />
           </ItemContext.Provider>
           <Footer />
       </div>
