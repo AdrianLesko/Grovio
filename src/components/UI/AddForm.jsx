@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ItemContext } from '../../App'
 
-export default function AddForm ( { addItem, setIsOpen } ) {
+export default function AddForm () {
+  const {addItem, setIsOpen} = useContext(ItemContext)
 
   const [itemName, setItemName] = useState('') 
   const [quantity, setQuantity] = useState(1)
@@ -8,8 +10,7 @@ export default function AddForm ( { addItem, setIsOpen } ) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('klikol si na add')
-
+    
     const newItem = {
       id: crypto.randomUUID(),
       title: itemName.trim(),

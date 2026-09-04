@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import {ItemContext} from '../../App'
 
-export default function AddItemContainer ({ setFilterVal}) {
+export default function AddItemContainer ({ setFilterVal }) {
 
   const { items, setIsOpen, setModalType } = useContext(ItemContext) 
   const notBoughtCount = items.filter(item => !item.isBought).length
@@ -31,13 +31,13 @@ export default function AddItemContainer ({ setFilterVal}) {
         </select>
         
         <button 
-        className='btn btn-circle btn-sm bg-white border border-accent text-accent text-xl flex items-center justify-center'
-        onClick={() => {
-          setIsOpen(true)
-          setModalType('add')
-        }}
+          className='btn btn-circle btn-sm bg-white border border-accent text-accent text-xl flex items-center justify-center'
+          onClick={() => {
+            setIsOpen(true)
+            setModalType('add')
+          }}
         >
-          +
+            +
         </button>
       </div>
       
