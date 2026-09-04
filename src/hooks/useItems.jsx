@@ -1,10 +1,19 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 export function useItems () {
-  const [items, setItems] = useState([])
+
+
+  const [items, setItems] = useState(() => {
+    const savedItems = localStorage.getItem('items')
+    return savedItems ? JSON.parse(savedItems) : []
+  })
+
   const [isOpen, setIsOpen] = useState(false)
   const [modalType, setModalType] = useState(null)
   const [itemToEdit, setItemToEdit] = useState(null)
   
+  useEffect(() => {
+   localStorage.setItem('items', JSON.stringify(items))
+  },[items])
 
    const addItem = (newItem) => {
     setItems(prev => [newItem, ...prev]);
