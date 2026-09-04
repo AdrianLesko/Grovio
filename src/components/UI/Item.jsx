@@ -22,12 +22,12 @@ export default function Item ( { item } ) {
 
       <span className=' w-1/3 h-full text-[1.1rem] ml-auto flex flex-row items-center justify-end gap-1'>
 
-        <button className='btn btn-dash btn-accent rounded-full w-8 px-0 py-0'
+        <button className='btn btn-ghost btn-accent rounded-full w-10 px-0 py-0'
           onClick={() => openEdit(item)}>
           <img src='src/assets/edit.png' className='h-5' />
         </button>
 
-        <button className='btn btn-dash btn-accent rounded-full w-8 px-0 py-0'
+        <button className='btn btn-ghost btn-accent rounded-full w-10 px-0 py-0'
           onClick={() => deleteItem(item.id)}>
           <img src='src/assets/delete.png' className='h-5' />
         </button>
