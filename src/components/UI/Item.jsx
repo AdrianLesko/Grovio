@@ -1,5 +1,7 @@
 import { timeAgo } from '../../utility/timeAgo'
 import { useItemContext } from './../../context/ItemContext'
+import deleteIcon from './../../assets/delete.png'
+import editIcon from './../../assets/edit.png'
 
 export default function Item ( { item } ) {
 
@@ -23,12 +25,12 @@ export default function Item ( { item } ) {
 
         <button className='btn btn-ghost btn-accent rounded-full w-10 px-0 py-0'
           onClick={() => openEdit(item)}>
-          <img src='src/assets/edit.png' className='h-5' />
+          <img src={editIcon} className='h-5' />
         </button>
 
         <button className='btn btn-ghost btn-accent rounded-full w-10 px-0 py-0'
           onClick={() => deleteItem(item.id)}>
-          <img src='src/assets/delete.png' className='h-5' />
+          <img src={deleteIcon} className='h-5' />
         </button>
         
         <input className='checkbox checkbox-accent' type='checkbox' checked={item.isBought} onChange={() => toggleItem(item)} />
