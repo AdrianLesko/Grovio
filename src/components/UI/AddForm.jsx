@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react'
-import { ItemContext } from '../../App'
+import { useState } from 'react'
+import { useItemContext } from './../../context/ItemContext'
 
 export default function AddForm () {
-  const {addItem, setIsOpen} = useContext(ItemContext)
+  const {addItem, setIsOpen} = useItemContext()
 
   const [itemName, setItemName] = useState('') 
   const [quantity, setQuantity] = useState(1)

@@ -1,9 +1,8 @@
 import Item from './Item'
-import {useContext} from 'react'
-import {ItemContext} from '../../App'
+import { useItemContext } from './../../context/ItemContext'
 
 export default function ShoppingList ({ filterVal }) {
-  const { items } = useContext(ItemContext)
+  const { items } = useItemContext()
 
   const filterItems = () => {
     switch (filterVal) {

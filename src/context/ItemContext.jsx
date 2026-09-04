@@ -1,6 +1,7 @@
-import {createContext} from 'react' 
-const ItemContext = createContext(null)
+import {createContext, useContext} from 'react'
 
-export default function useContext () {
-  
+export const ItemContext = createContext(null)
+
+export function useItemContext () {
+  return useContext(ItemContext)
 }

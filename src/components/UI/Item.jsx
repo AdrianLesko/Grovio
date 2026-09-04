@@ -1,10 +1,9 @@
 import { timeAgo } from '../../utility/timeAgo'
-import { useContext } from 'react'
-import { ItemContext } from '../../App'
+import { useItemContext } from './../../context/ItemContext'
 
 export default function Item ( { item } ) {
 
-  const { deleteItem, toggleItem, openEdit } = useContext(ItemContext)
+  const { deleteItem, toggleItem, openEdit } = useItemContext()
   
   return (
     <li className='list-row border-2 border-accent bg-base-100 flex flex-row w-full h-15 items-center justify-around'>

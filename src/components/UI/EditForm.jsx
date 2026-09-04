@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react'
-import { ItemContext } from '../../App'
+import { useState } from 'react'
+import { useItemContext } from './../../context/ItemContext'
 
 export default function EditForm () {
 
-  const { itemToEdit, updateItem } = useContext(ItemContext)
+  const { itemToEdit, updateItem } = useItemContext()
 
   const title = itemToEdit.title
   const quantity = itemToEdit.quantity

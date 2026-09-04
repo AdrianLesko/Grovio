@@ -1,4 +1,4 @@
-import { useState, createContext} from 'react'
+
 import './App.css'
 import Header from './components/UI/Header'
 import Hero from './components/UI/Hero'
@@ -7,8 +7,7 @@ import Modal from './components/UI/Modal'
 import AddForm from './components/UI/AddForm'
 import EditForm from './components/UI/EditForm'
 import {useItems} from './hooks/useItems'
-
-export const ItemContext = createContext(null)
+import {ItemContext} from './context/ItemContext'
 
 
 

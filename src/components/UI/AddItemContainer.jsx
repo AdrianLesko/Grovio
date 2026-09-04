@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react'
-import {ItemContext} from '../../App'
+
+import { useItemContext } from './../../context/ItemContext'
 
 export default function AddItemContainer ({ setFilterVal }) {
 
-  const { items, setIsOpen, setModalType } = useContext(ItemContext) 
+  const { items, setIsOpen, setModalType } = useItemContext()
   const notBoughtCount = items.filter(item => !item.isBought).length
   const boughtCount = items.length - notBoughtCount
 
