@@ -29,9 +29,10 @@ function App() {
         <div className='flex flex-col h-screen'>
             <Header />
             
-              <Hero />
+            <Hero />
             
             <Footer />
+
         </div>
       </ItemContext.Provider>
     </>
