@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useItemContext } from './../../context/ItemContext'
+import Units from './UnitsContainer'
+import QuantitySetter from './QuantitySetter'
 
 export default function EditForm () {
 
@@ -7,13 +9,15 @@ export default function EditForm () {
 
   const title = itemToEdit.title
   const quantity = itemToEdit.quantity
+  const unit = itemToEdit.unit
 
   const [newTitle, setNewTitle] = useState(title)
   const [newQuantity, setNewQuantity] = useState(quantity)
+  const [newUnit, setNewUnit] = useState(unit)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newItem = {...itemToEdit, title: newTitle.trim(), quantity: Number(newQuantity)}
+    const newItem = {...itemToEdit, title: newTitle.trim(), quantity: Number(newQuantity), unit: newUnit}
     updateItem(newItem)
     setNewTitle('')
   }
@@ -27,7 +31,10 @@ export default function EditForm () {
         <input className='input w-full' placeholder={title} type='text' value={newTitle} onChange={e => setNewTitle(e.target.value)}required />
 
         <label className='fieldset-label'>Quantity</label>
-        <input className='input w-full' type='number' min='1' value={newQuantity} onChange={e=> setNewQuantity(e.target.value)} />
+        <QuantitySetter quantity={newQuantity} setQuantity={setNewQuantity} />
+        
+
+        <Units unit={newUnit} setUnit={setNewUnit} />
 
       </fieldset>
 
