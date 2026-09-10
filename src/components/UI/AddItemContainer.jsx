@@ -11,7 +11,7 @@ export default function AddItemContainer ({ setFilterVal }) {
   
 
   return (
-    <div className='card w-full bg-accent h-12 mt-5 mb-2 flex flex-row px-3 items-center'>
+    <div className='card w-full bg-accent shadow-md h-12 mt-5 mb-2 flex flex-row px-3 items-center'>
       <div id='list-info' className='flex flex-row gap-5'>
         <label className='label'>
           To Buy:

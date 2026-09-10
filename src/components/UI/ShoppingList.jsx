@@ -3,11 +3,14 @@ import { useItemContext } from './../../context/ItemContext'
 
 export default function ShoppingList ({ filterVal }) {
   const { items } = useItemContext()
-  
+  const unboughtItems = items.filter(item => !item.isBought)
+  const boughtItems = items.filter(item => item.isBought)
+
+  const sortedItems = unboughtItems.concat(boughtItems)
 
   const filterItems = () => {
     switch (filterVal) {
-      case 'all': return items;
+      case 'all': return sortedItems;
       case 'to-buy': return items.filter(item => !item.isBought);
       case 'bought': return items.filter(item => item.isBought);
       default: return items
