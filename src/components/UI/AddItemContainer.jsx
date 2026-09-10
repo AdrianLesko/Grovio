@@ -11,7 +11,7 @@ export default function AddItemContainer ({ setFilterVal }) {
   
 
   return (
-    <div className='card w-full bg-accent shadow-md h-12 mt-5 mb-2 flex flex-row px-3 items-center'>
+    <div className='card w-full bg-accent shadow-md h-auto mt-2 py-1 px-3 mb-2 flex flex-wrap flex-row items-center'>
       <div id='list-info' className='flex flex-row gap-5'>
         <label className='label'>
           To Buy:
@@ -24,7 +24,7 @@ export default function AddItemContainer ({ setFilterVal }) {
       </div>
       
       <div className='ml-auto w-1/2 flex flex-row justify-end items-center gap-4 '>
-        <select onChange={e => setFilterVal(e.target.value)} className='select h-3/4 w-40 '>
+        <select onChange={e => setFilterVal(e.target.value)} className='select h-3/4 w-28 sm:w-40 '>
           <option value='all'>All</option>
           <option value='to-buy'>To buy</option>
           <option value='bought'>Bought</option>
