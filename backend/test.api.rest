@@ -1,0 +1,31 @@
+
+GET http://localhost:8000/items
+
+### 
+GET http://localhost:8000/items/6acf74e0624a2b482851b4e5
+
+### 
+
+POST http://localhost:8000/items
+Content-Type: application/json
+
+{
+  "title": "item2",
+  "quantity": 2,
+  "unit": "kg",
+  "isBought": false
+}
+
+### 
+DELETE http://localhost:8000/items/6acf74e0624a2b482851b4e5
+
+
+###
+PATCH  http://localhost:8000/items/6acf7830aaf3ba6c3c12b1f6
+Content-Type: application/json
+
+{
+  "title": "new title",
+  "quantity": 5000,
+  "unit": "l"
+}
