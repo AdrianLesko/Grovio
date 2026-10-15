@@ -2,30 +2,29 @@
 GET http://localhost:8000/items
 
 ### 
-GET http://localhost:8000/items/6acf74e0624a2b482851b4e5
-
+GET http://localhost:8000/items/6ad0c7e04ecff5e95f09f704
 ### 
 
 POST http://localhost:8000/items
 Content-Type: application/json
 
 {
-  "title": "item2",
+  "title": "3",
   "quantity": 2,
   "unit": "kg",
   "isBought": false
 }
 
 ### 
-DELETE http://localhost:8000/items/6acf74e0624a2b482851b4e5
+DELETE http://localhost:8000/items/6ad0c7e04ecff5e95f09f704
 
 
 ###
-PATCH  http://localhost:8000/items/6acf7830aaf3ba6c3c12b1f6
+PATCH  http://localhost:8000/items/6ad0c8074ecff5e95f09f705
 Content-Type: application/json
 
 {
-  "title": "new title",
-  "quantity": 5000,
-  "unit": "l"
+  "title": "vajcia",
+  "quantity": 50,
+  "unit": "kg"
 }

@@ -38,7 +38,7 @@ export default function Item ( { item } ) {
         <button type='button' className='btn btn-ghost btn-sm btn-square btn-accent'
           onClick={(e) => {
             e.stopPropagation()
-            deleteItem(item.id)
+            deleteItem(item)
           }}
         >
           <img src={deleteIcon} alt='delete button' className='h-4' />

@@ -10,7 +10,7 @@ import itemRouter from './routes/itemRoutes.js'
 const app = express()
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:5137'
+  origin: 'http://localhost:5173'
 }))
 app.use('/items', itemRouter)
 

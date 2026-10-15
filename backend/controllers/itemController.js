@@ -1,75 +1,69 @@
-import Item from '../models/item.js'
+import Item from "../models/item.js";
 
-const getItems = async (req,res,next) => {
+const getItems = async (req, res, next) => {
   try {
-    const items = await Item.find()
-    res.status(200).json(items)
+    const items = await Item.find();
+    res.status(200).json(items);
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
-const getItem = async (req,res,next) => {
+const getItem = async (req, res, next) => {
   try {
-    const id = req.params.id
-    const item = await Item.findById(id)
+    const id = req.params.id;
+    const item = await Item.findById(id);
     if (!item) {
-      const err = new Error('Item not found')
-      err.status = 404
-      next(err)
-      return
+      const err = new Error("Item not found");
+      err.status = 404;
+      next(err);
+      return;
     }
-    res.status(200).send(item)
+    res.status(200).send(item);
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
 const createItem = async (req, res, next) => {
   try {
-    const content = req.body
-    const item = await Item.create(content)
-    res.status(200).send(item)
+    const content = req.body;
+    const item = await Item.create(content);
+    res.status(200).json(item);
   } catch (err) {
-    console.log(err)
-    next(err)
+    console.log(err);
+    next(err);
   }
-}
+};
 
-const deleteItem = async (req,res, next) => {
+const deleteItem = async (req, res, next) => {
   try {
-    const id = req.params.id
-    await Item.deleteOne({_id: id})
-   
-    res.status(200).send('deleted')
-
+    const id = req.params.id;
+    const item = await Item.deleteOne({ _id: id });
+    res.status(200).json();
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
-const updateItem = async (req,res,next) => {
+const updateItem = async (req, res, next) => {
   try {
-    const id = req.params.id 
-    const newItem = req.body
-    const item = await Item.findById(id)
-    
+    const id = req.params.id;
+    const reqItem = req.body;
+    const item = await Item.findById(id);
+
     if (!item) {
-      const err = new Error('Item not found')
-      err.status = 404
-      next(err)
-      return
+      const err = new Error("Item not found");
+      err.status = 404;
+      next(err);
+      return;
     }
-    
-    item.title = newItem.title
-    item.quantity = newItem.quantity
-    item.unit = newItem.unit
-    await item.save()
-    res.status(201).json(item)
-
+    Object.assign(item, reqItem);
+    await item.save();
+    res.status(201).json(item);
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
-export {getItems, getItem, createItem, deleteItem, updateItem}
+export { getItems, getItem, createItem, deleteItem, updateItem };
