@@ -8,13 +8,19 @@ import AddForm from './components/UI/AddForm'
 import EditForm from './components/UI/EditForm'
 import {useItems} from './hooks/useItems'
 import {ItemContext} from './context/ItemContext'
-
+import ToastError from './components/UI/Toast.jsx'
 
 
 function App() {
-  const { items,
-    isOpen, setIsOpen,
-    modalType, setModalType, 
+  const { 
+    error,
+    setError,
+    items,
+    isOpen,
+    setIsOpen, 
+    isLoading,
+    modalType, 
+    setModalType, 
     itemToEdit, 
     addItem, deleteItem, toggleItem, openEdit, updateItem} = useItems()
 
@@ -25,6 +31,10 @@ function App() {
           {modalType === 'add' && <AddForm />}
           {modalType === 'edit' && <EditForm />}
         </Modal>
+
+        <ToastError error={error} setError={setError}/>
+
+        
 
         <div className='flex flex-col h-dvh'>
             <Header />

@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
-import { getAll, createItem, deleteItem, toggleItem, patchItem } from '../services/itemsApi.js'
+import * as itemsApi from '../services/itemsApi.js'
 
 export function useItems() {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [itemToEdit, setItemToEdit] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const getItems = async () => {
       try {
-        const items = await getAll()
+        const items = await itemsApi.getAll()
         setItems(items);
       } catch (err) {
-        console.log(err);
+        setError(err)
+      } finally {
+        setIsLoading(false)
       }
     };
     getItems();
@@ -21,35 +25,41 @@ export function useItems() {
 
   const addItem = async (newItem) => {
     try {
-      const item = await createItem(newItem)
+      setIsLoading(true)
+      const item = await itemsApi.createItem(newItem)
       setItems((prev) => [item, ...prev]);
     } catch (err) {
-      console.error(err);
-      return;
+      setError(err)
+    } finally {
+      setIsLoading(false)
     }
   };
 
   const deleteItem = async (item) => {
     try {
-      await deleteItem(item.id)
+      setIsLoading(true)
+      await itemsApi.deleteItem(item.id)
       setItems((prev) => prev.filter((e) => e.id !== item.id));
     } catch (err) {
-      console.error(err);
-      return;
+      setError(err)
+    } finally {
+      setIsLoading(false)
     }
   };
 
   const toggleItem = async (itemToToggle) => {
     try {
-      const toggledItem = await toggleItem(itemToToggle)
+      setIsLoading(true)
+      const toggledItem = await itemsApi.toggleItem(itemToToggle)
       setItems((prev) =>
         prev.map((item) => {
           return item.id === toggledItem.id ? { ...toggledItem } : item;
         }),
       );
     } catch (err) {
-      console.error(err.message);
-      return;
+      setError(err)
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -61,7 +71,8 @@ export function useItems() {
 
   const updateItem = async (newItem) => {
     try {
-      const item = await patchItem(newItem)
+      setIsLoading(true)
+      const item = await itemsApi.patchItem(newItem)
       setItems((prev) =>
         prev.map((e) => {
           return item.id === e.id ? item : e;
@@ -71,14 +82,16 @@ export function useItems() {
       setModalType(null);
       setIsOpen(false);
     } catch (err) {
-      console.error(err.message);
-      return;
+      setError(err)
+    } finally {
+      setIsLoading(false)
     }
   };
 
   return {
     items,
     isOpen,
+    isLoading,
     setIsOpen,
     modalType,
     setModalType,
@@ -88,5 +101,7 @@ export function useItems() {
     toggleItem,
     openEdit,
     updateItem,
+    error,
+    setError,
   };
 }

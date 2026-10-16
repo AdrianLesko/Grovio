@@ -15,7 +15,6 @@ export default function AddForm () {
     e.preventDefault()
     
     const newItem = {
-      id: crypto.randomUUID(),
       title: itemName.trim(),
       quantity: Number(quantity) || 1,
       unit: unit,
