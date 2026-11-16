@@ -1,50 +1,28 @@
 
 import './App.css'
-import Header from './components/UI/Header'
-import Hero from './components/UI/Hero'
-import Footer from './components/UI/Footer'
-import Modal from './components/UI/Modal'
-import AddForm from './components/UI/AddForm'
-import EditForm from './components/UI/EditForm'
-import {useItems} from './hooks/useItems'
-import {ItemContext} from './context/ItemContext'
-import ToastError from './components/UI/Toast.jsx'
+
+
+import { Routes, Route } from 'react-router-dom'
+import PublicLayout from './layouts/PublicLayout.jsx'
+import DashboardLayout from './layouts/DashboardLayout.jsx'
+import LandingPage from './pages/LandingPage.jsx'
+import AuthPage from './pages/AuthPage.jsx'
+import DashboardPage from './pages/DashboardPage.jsx'
 
 
 function App() {
-  const { 
-    error,
-    setError,
-    items,
-    isOpen,
-    setIsOpen, 
-    isLoading,
-    modalType, 
-    setModalType, 
-    itemToEdit, 
-    addItem, deleteItem, toggleItem, openEdit, updateItem} = useItems()
-
+ 
   return (
     <>
-      <ItemContext.Provider value={{items,isLoading, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-          {modalType === 'add' && <AddForm />}
-          {modalType === 'edit' && <EditForm />}
-        </Modal>
-
-        <ToastError error={error} setError={setError}/>
-
-        
-
-        <div className='flex flex-col h-dvh'>
-            <Header />
-            
-            <Hero />
-            
-            <Footer />
-
-        </div>
-      </ItemContext.Provider>
+      <Routes>
+        <Route path='/' element={ <PublicLayout />}>
+          <Route index element={ <LandingPage />} />
+          <Route path='/login' element={ <AuthPage /> } />
+        </Route>
+        <Route path='/dashboard' element={ <DashboardLayout />}>
+          <Route index element={ <DashboardPage />} />
+        </Route>
+      </Routes>
     </>
   )
 }

@@ -3,12 +3,19 @@
 import profileImage from '../../assets/profile.png'
 import logo from '../../assets/logo.png'
 
+import { Link } from 'react-router-dom'
+
 export default function Header () {
+
+
   return (
     <div className='navbar bg-base-200 flex flex-row justify-between items-center px-10'>
       <div className='flex items-center gap-3'>
         <img src={logo} alt='logo' className='h-8'/>
         <h1 className='font-extrabold text-2xl text-accent-content'>Grovio</h1>
+      </div>
+      <div>
+        <button><Link to='/login'>Odhlasit sa</Link></button>
       </div>
       <div className='avatar h-12 w-12 shrink-0'>
         <div className='ring-accent ring-offset-base-100 h-11 w-11 overflow-hidden rounded-full ring-2 ring-offset-2'>
