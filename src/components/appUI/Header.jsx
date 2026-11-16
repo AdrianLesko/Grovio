@@ -3,7 +3,7 @@
 import profileImage from '../../assets/profile.png'
 import logo from '../../assets/logo.png'
 
-import { Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext.jsx'
 
 export default function Header () {

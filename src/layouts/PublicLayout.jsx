@@ -5,11 +5,11 @@ export default function PublicLayout (){
   
   return (
     <div className='h-screen min-w-screen flex flex-col'>
-      <header className='h-10 flex flex-row items-center justify-center bg-accent'>
-        <Link to='/'><img src={img} className='h-3' /> </Link>
+      <header className='px-10 py-2 flex flex-row items-center justify-center bg-accent'>
+        <Link className='mr-auto' to='/'><img src={img} className='h-8' /></Link>
         <nav className='flex flex-row gap-4'> 
           <ul>
-            <Link to='/login'>Prihlasit sa</Link>
+            <Link to='/login'><button className='btn btn-primary font-bold hover:text-base-200'>Prihlasit sa</button></Link>
           </ul>
         </nav>
 
