@@ -15,7 +15,7 @@ export default function PublicLayout (){
 
       </header> 
 
-      <main className='flex-1 bg-base-200'>
+      <main className='flex-1 bg-base-100'>
         <Outlet></Outlet>
       </main>
 

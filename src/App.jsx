@@ -9,6 +9,7 @@ import LandingPage from './pages/LandingPage.jsx'
 import AuthPage from './pages/AuthPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 import ProtectedRoute from './components/publicUI/ProtectedRoute.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 import {AuthProvider}from './context/AuthContext.jsx'
 
@@ -29,6 +30,7 @@ function App() {
           }>
             <Route index element={ <DashboardPage />} />
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </AuthProvider>
     </>
