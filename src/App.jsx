@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <ItemContext.Provider value={{items, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
+      <ItemContext.Provider value={{items,isLoading, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
         <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
           {modalType === 'add' && <AddForm />}
           {modalType === 'edit' && <EditForm />}

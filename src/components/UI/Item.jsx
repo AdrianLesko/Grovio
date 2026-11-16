@@ -4,7 +4,7 @@ import deleteIcon from './../../assets/delete.png'
 import editIcon from './../../assets/edit.png'
 
 export default function Item ( { item } ) {
-  const { deleteItem, toggleItem, openEdit } = useItemContext()
+  const { deleteItem, toggleItem, openEdit, isLoading} = useItemContext()
   
   return (
     <li className={`p-3 flex flex-row justify-between items-center border border-base-200 rounded-xl shadow-sm hover:shadow-md hover:cursor-pointer hover:select-none
@@ -35,7 +35,7 @@ export default function Item ( { item } ) {
           <img src={editIcon} alt='edit button' className='h-4' />
         </button>
 
-        <button type='button' className='btn btn-ghost btn-sm btn-square btn-accent'
+        <button type='button' className='btn btn-ghost btn-sm btn-square btn-accent' disabled={isLoading}
           onClick={(e) => {
             e.stopPropagation()
             deleteItem(item)

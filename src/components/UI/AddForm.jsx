@@ -4,7 +4,7 @@ import Units from './UnitsContainer'
 import QuantitySetter from './QuantitySetter'
 
 export default function AddForm () {
-  const {addItem, setIsOpen} = useItemContext()
+  const {addItem, setIsOpen, isLoading} = useItemContext()
 
   const [itemName, setItemName] = useState('') 
   const [quantity, setQuantity] = useState(1)
@@ -22,7 +22,6 @@ export default function AddForm () {
       createdAt: Date.now()
     }
     
-    console.log(newItem)
     addItem(newItem)
     setIsOpen(false)
     setItemName('')
@@ -44,8 +43,8 @@ export default function AddForm () {
 
           <Units unit={unit} setUnit={setUnit} />
         </fieldset>
-
-        <button className='btn btn-accent w-full' type='submit'>Add</button>
+      
+        <button className='btn btn-accent w-full' disabled={isLoading} type='submit'>Add</button>
       </form>
     </>
   )

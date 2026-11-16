@@ -23,7 +23,7 @@ const getItem = async (id) => {
 const createItem = async (item) => {
   if (!item) throw new Error('item is missing')
 
-  const response = await fetch(url + 'fafafa', {
+  const response = await fetch(url, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'}, 
     body: JSON.stringify(item)

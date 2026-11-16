@@ -5,7 +5,7 @@ import QuantitySetter from './QuantitySetter'
 
 export default function EditForm () {
 
-  const { itemToEdit, updateItem } = useItemContext()
+  const { itemToEdit, updateItem, isLoading} = useItemContext()
 
   const title = itemToEdit.title
   const quantity = itemToEdit.quantity
@@ -38,7 +38,7 @@ export default function EditForm () {
 
       </fieldset>
 
-      <button className='btn btn-accent w-full' type='submit'>Submit</button>
+      <button className='btn btn-accent w-full' type='submit' disabled={isLoading}>Submit</button>
     </form>
   )
 }
