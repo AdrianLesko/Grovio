@@ -5,14 +5,18 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import { handleNotFoundError, handleFinalError } from './middleware/error.middleware.js'
 
-import itemRouter from './routes/itemRoutes.js'
+import itemRouter from './routers/itemRouter.js'
+import authRouter from './routers/authRouter.js'
 
 const app = express()
 app.use(express.json())
 app.use(cors({
   origin: 'http://localhost:5173'
 }))
-app.use('/items', itemRouter)
+
+
+app.use('/api/auth', authRouter)
+app.use('/api/items', itemRouter)
 
 
 app.use(handleNotFoundError)
