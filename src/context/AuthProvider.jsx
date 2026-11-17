@@ -1,5 +1,6 @@
 import { AuthContext } from './AuthContext.js'
 import { useState } from 'react'
+import { userLogin, userRegister } from '../services/authApi.js'
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState( () => {
@@ -13,16 +14,42 @@ export const AuthProvider = ({ children }) => {
 
   const isAuthenticated = Boolean(token)
 
-  const login = (email, password) => {
-    const token = 'sim-mock-token'
-    setToken(token)
-    localStorage.setItem('token', JSON.stringify(token))
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
+  const login = async (email, password) => {
+    try {
+      setIsLoading(true)
+      const {token, user} = await userLogin(email, password)
 
-    const simUser = {email}
-    setUser(simUser)
-    localStorage.setItem('user', JSON.stringify(simUser))
-    void password
+      setUser({...user, token: token})
+      setToken(token)
+
+      localStorage.setItem('user', JSON.stringify({...user, token: token}))
+      localStorage.setItem('token', JSON.stringify(token))
+
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const register = async (name, surname, email, password) => {
+    try {
+      setIsLoading(true)
+      const {token, user} = await userRegister(name, surname, email, password)
+
+      setUser({...user, token: token})
+      setToken(token)
+
+      localStorage.setItem('user', JSON.stringify({...user, token: token}))
+      localStorage.setItem('token', JSON.stringify(token))
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const logout = () => {
@@ -35,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{token, user, isAuthenticated, login, logout}}>
+    <AuthContext.Provider value={{token, user, error, isLoading, isAuthenticated, login, register, logout}}>
       {children}
     </AuthContext.Provider>
   )

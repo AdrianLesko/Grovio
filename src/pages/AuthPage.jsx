@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
-import { useAuthContext } from '../context/AuthContext.jsx'
+import { useAuthContext } from '../context/AuthContext.js'
 import { useState } from 'react'
 
 export default function AuthPage () {
-  const {login} = useAuthContext()
+  const { login, register, error} = useAuthContext()
   const navigate = useNavigate()
 
   const [isLogin, setIsLogin] = useState(true)
@@ -14,14 +14,20 @@ export default function AuthPage () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
-    console.log('register')
+    await register(name, surname, email, password)
+    if (!error) {
+      navigate('/dashboard')
+    }
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    console.log('login')
+    await login(email, password)
+    if (!error) {
+      navigate('/dashboard')
+    }
   }
 
   return (

@@ -37,7 +37,14 @@ export async function register (req,res,next) {
 
     await newUser.save()
 
-    res.status(201).json(newUser)
+    const tokenForUser = {
+      name: newUser.name,
+      email: newUser.email,
+      id: newUser.id
+    }
+
+    const token = jwt.sign(tokenForUser, process.env.JWT_SECRET, {expiresIn: '2h'})
+    res.status(201).json({token, newUser})
   } catch (err) {
     next(err)
   }
