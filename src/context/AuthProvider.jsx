@@ -1,12 +1,6 @@
-import { createContext, useContext } from 'react' 
+import { AuthContext } from './AuthContext.js'
 import { useState } from 'react'
 
-export const AuthContext = createContext(null)
-
-export const useAuthContext = () => {
-  return useContext(AuthContext)
-}
- 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState( () => {
     return localStorage.getItem('token') || null
@@ -28,6 +22,7 @@ export const AuthProvider = ({ children }) => {
     const simUser = {email}
     setUser(simUser)
     localStorage.setItem('user', JSON.stringify(simUser))
+    void password
   }
 
   const logout = () => {
@@ -45,4 +40,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 } 
-

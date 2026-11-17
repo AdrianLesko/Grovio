@@ -18,4 +18,6 @@ export function handleFinalError (err, req, res, next) {
     type: status === 500 ? 'Internal Server Error' : 'Client side Error',
     msg: err.message
   })
+  void next
+  void req
 }

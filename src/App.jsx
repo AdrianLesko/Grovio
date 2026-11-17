@@ -11,7 +11,7 @@ import DashboardPage from './pages/DashboardPage.jsx'
 import ProtectedRoute from './components/publicUI/ProtectedRoute.jsx'
 import NotFound from './pages/NotFound.jsx'
 
-import {AuthProvider}from './context/AuthContext.jsx'
+import {AuthProvider} from './context/AuthProvider.js'
 
 function App() {
  

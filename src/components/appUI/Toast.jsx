@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 
 export default function ToastError ( {error, setError }) {
 
@@ -8,7 +8,7 @@ export default function ToastError ( {error, setError }) {
     const timer = setTimeout(() => setError(null), 4000)
 
     return () => clearTimeout(timer)
-  }, [error])
+  }, [error, setError])
 
   return error && (
     <div className='toast mb-10'>

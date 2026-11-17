@@ -1,5 +1,5 @@
 import express from 'express'
-import dotenv from 'dotenv/config'
+import 'dotenv/config'
 const port = process.env.PORT
 import mongoose from 'mongoose'
 import cors from 'cors'
