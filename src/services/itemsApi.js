@@ -1,4 +1,4 @@
-const url = 'http://localhost:8000/items'
+const url = 'http://localhost:8000/api/items'
 
 const getAll = async () => {
   const response = await fetch(url)

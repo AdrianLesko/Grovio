@@ -44,7 +44,7 @@ export async function register (req,res,next) {
     }
 
     const token = jwt.sign(tokenForUser, process.env.JWT_SECRET, {expiresIn: '2h'})
-    res.status(201).json({token, newUser})
+    res.status(201).json({token, user: newUser})
   } catch (err) {
     next(err)
   }

@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext.js'
 import { useState } from 'react'
 
+import ErrorToast from '../components/publicUI/errorToast.jsx'
+
 export default function AuthPage () {
   const { login, register, error} = useAuthContext()
   const navigate = useNavigate()
@@ -16,16 +18,16 @@ export default function AuthPage () {
 
   const handleRegister = async (e) => {
     e.preventDefault()
-    await register(name, surname, email, password)
-    if (!error) {
+    const success = await register(name, surname, email, password)
+    if (success) {
       navigate('/dashboard')
     }
   }
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    await login(email, password)
-    if (!error) {
+    const success = await login(email, password)
+    if (success) {
       navigate('/dashboard')
     }
   }
@@ -41,6 +43,7 @@ export default function AuthPage () {
         <form onSubmit={e => isLogin ? handleLogin(e) : handleRegister(e)}>
           <fieldset className='fieldset rounded-box w-xs p-4'>
             <legend className='fieldset-legend'>{isLogin ? 'Prihlásenie' : 'Registrácia'}</legend>
+            <ErrorToast error={error} />
             {!isLogin && (
               <>
                 <label className='label'>Name</label>

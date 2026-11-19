@@ -1,8 +1,9 @@
 import { AuthContext } from './AuthContext.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { userLogin, userRegister } from '../services/authApi.js'
 
 export const AuthProvider = ({ children }) => {
+
   const [token, setToken] = useState( () => {
     return localStorage.getItem('token') || null
   })
@@ -17,6 +18,13 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
+
+  useEffect(() => {
+    if (!error) return
+    const timer = setTimeout(() => setError(null), 3000)
+    return () => clearTimeout(timer)
+  }, [error])
+
   const login = async (email, password) => {
     try {
       setIsLoading(true)
@@ -28,8 +36,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify({...user, token: token}))
       localStorage.setItem('token', JSON.stringify(token))
 
+      return true
+
     } catch (err) {
       setError(err.message)
+      return false
     } finally {
       setIsLoading(false)
     }
@@ -45,8 +56,11 @@ export const AuthProvider = ({ children }) => {
 
       localStorage.setItem('user', JSON.stringify({...user, token: token}))
       localStorage.setItem('token', JSON.stringify(token))
+
+      return true
     } catch (err) {
       setError(err.message)
+      return false
     } finally {
       setIsLoading(false)
     }

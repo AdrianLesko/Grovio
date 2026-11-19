@@ -8,6 +8,8 @@ import {useItems} from '../hooks/useItems'
 import {ItemContext} from '../context/ItemContext.jsx'
 import ToastError from '../components/appUI/Toast.jsx'
 
+import {useAuthContext} from '../context/AuthContext.js'
+
 export default function DashboardPage () {
 
   const { 
