@@ -9,8 +9,20 @@ export function handleFinalError (err, req, res, next) {
     err.status = 400
     err.message = `Invalid id format: ${err.value}`
   }
+
+  if (err.name === 'TokenExpiredError') {
+    err.status = 401
+    err.message = 'Token expired. Sign in again to continue'
+  }
+
+  if (err.name === 'JsonWebTokenError') {
+    err.status = 401
+    err.message = 'Token invalid. Access denied'
+  }
+
   const status = err.status || 500
   console.log(err.message)
+  
   res.status(status).json({
     error: true,
     name: err.name,

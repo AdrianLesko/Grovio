@@ -1,5 +1,5 @@
 
-GET http://localhost:8000/items
+GET http://localhost:8000/api/items
 
 ### 
 GET http://localhost:8000/items/6ad0c7e04ecff5e95f09f704

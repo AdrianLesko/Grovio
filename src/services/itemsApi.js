@@ -1,7 +1,16 @@
 const url = 'http://localhost:8000/api/items'
 
+const token = JSON.parse(localStorage.getItem('token'))
+
+
 const getAll = async () => {
-  const response = await fetch(url)
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
   if (!response.ok) {
     const errorData = await response.json()
     throw new Error(errorData.msg)
