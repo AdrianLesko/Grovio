@@ -1,9 +1,6 @@
 const url = 'http://localhost:8000/api/items'
-
-const token = JSON.parse(localStorage.getItem('token'))
-
-
-const getAll = async () => {
+const getAll = async ( token ) => {
+ 
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -29,12 +26,15 @@ const getItem = async (id) => {
     return data
 }
 
-const createItem = async (item) => {
+const createItem = async (item, token) => {
   if (!item) throw new Error('item is missing')
 
   const response = await fetch(url, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'}, 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }, 
     body: JSON.stringify(item)
   })
 
@@ -49,9 +49,12 @@ const createItem = async (item) => {
 }
 
 
-const deleteItem = async (id) => {
+const deleteItem = async (id, token) => {
   const response = await fetch(`${url}/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   })
 
   if (!response.ok) {
@@ -61,10 +64,13 @@ const deleteItem = async (id) => {
   return
 }
 
-const toggleItem = async (item) => {
+const toggleItem = async (item, token) => {
   const response = await fetch(`${url}/${item.id}`, {
     method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify({isBought: !item.isBought})
   })
 
@@ -76,10 +82,13 @@ const toggleItem = async (item) => {
   return data
 }
 
-const patchItem = async (item) => {
+const patchItem = async (item, token) => {
   const response = await fetch(`${url}/${item.id}`, {
     method: 'PATCH', 
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify(item)
   })
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as itemsApi from '../services/itemsApi.js'
-
+import { useAuthContext } from '../context/AuthContext.js'
 
 export function useItems() {
   const [items, setItems] = useState([]);
@@ -10,11 +10,12 @@ export function useItems() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-
+  const {token} = useAuthContext()
+ 
   useEffect(() => {
     const getItems = async () => {
       try {
-        const items = await itemsApi.getAll()
+        const items = await itemsApi.getAll(token)
         setItems(items);
       } catch (err) {
         setError(err)
@@ -23,12 +24,12 @@ export function useItems() {
       }
     };
     getItems();
-  }, []);
+  }, [token]);
 
   const addItem = async (newItem) => {
     try {
       setIsLoading(true)
-      const item = await itemsApi.createItem(newItem)
+      const item = await itemsApi.createItem(newItem, token)
       setItems((prev) => [item, ...prev]);
     } catch (err) {
       setError(err)
@@ -40,7 +41,7 @@ export function useItems() {
   const deleteItem = async (item) => {
     try {
       setIsLoading(true)
-      await itemsApi.deleteItem(item.id)
+      await itemsApi.deleteItem(item.id, token)
       setItems((prev) => prev.filter((e) => e.id !== item.id));
     } catch (err) {
       setError(err)
@@ -52,7 +53,7 @@ export function useItems() {
   const toggleItem = async (itemToToggle) => {
     try {
       setIsLoading(true)
-      const toggledItem = await itemsApi.toggleItem(itemToToggle)
+      const toggledItem = await itemsApi.toggleItem(itemToToggle,token)
       setItems((prev) =>
         prev.map((item) => {
           return item.id === toggledItem.id ? { ...toggledItem } : item;
@@ -74,7 +75,7 @@ export function useItems() {
   const updateItem = async (newItem) => {
     try {
       setIsLoading(true)
-      const item = await itemsApi.patchItem(newItem)
+      const item = await itemsApi.patchItem(newItem, token)
       setItems((prev) =>
         prev.map((e) => {
           return item.id === e.id ? item : e;

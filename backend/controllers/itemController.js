@@ -62,7 +62,7 @@ const updateItem = async (req, res, next) => {
     const reqItem = req.body;
     const user = req.user
 
-    const item = await Item.find({ _id: id, user: user.id});
+    const item = await Item.findOne({ _id: id, user: user.id});
 
     if (!item) {
       const err = new Error("Item not found");

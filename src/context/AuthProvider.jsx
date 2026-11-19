@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       setToken(token)
 
       localStorage.setItem('user', JSON.stringify({...user, token: token}))
-      localStorage.setItem('token', JSON.stringify(token))
+      localStorage.setItem('token', token)
 
       return true
 
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
       setToken(token)
 
       localStorage.setItem('user', JSON.stringify({...user, token: token}))
-      localStorage.setItem('token', JSON.stringify(token))
+      localStorage.setItem('token', token)
 
       return true
     } catch (err) {

@@ -6,15 +6,14 @@ function getToken (req) {
   if (authorization && /^Bearer /.test(authorization)) {
     return authorization.split(' ')[1]
   }
-
   return null
 }
 
 export function verifyToken (req, res, next) {
   try {
-    
+    console.log(getToken(req))
     const decoded = jwt.verify(getToken(req), process.env.JWT_SECRET)
-   
+    
     if (decoded) {
       req.user = decoded
       next()
