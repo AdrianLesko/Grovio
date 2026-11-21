@@ -1,7 +1,5 @@
 
-
-import profileImage from '../../assets/profile.png'
-import logo from '../../assets/logo.png'
+import { ShoppingCartPlus } from 'lucide-react'
 
 import { useNavigate} from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext.js'
@@ -9,6 +7,9 @@ import { useAuthContext } from '../../context/AuthContext.js'
 export default function Header () {
 
   const {logout} = useAuthContext()
+  const { user } = useAuthContext()
+  const name = user.name
+
   const navigate = useNavigate()
   
 
@@ -20,17 +21,17 @@ export default function Header () {
 
 
   return (
-    <div className='navbar bg-base-200 flex flex-row justify-between items-center px-10'>
-      <div className='flex items-center gap-3'>
-        <img src={logo} alt='logo' className='h-8'/>
-        <h1 className='font-extrabold text-2xl text-accent-content'>Grovio</h1>
-      </div>
-      <div>
-        <button onClick={e => handlelogout(e)}>Odhlasit sa</button>
-      </div>
-      <div className='avatar h-12 w-12 shrink-0'>
-        <div className='ring-accent ring-offset-base-100 h-11 w-11 overflow-hidden rounded-full ring-2 ring-offset-2'>
-          <img src={profileImage} alt='profile photo' className='h-full w-full object-cover' />
+    <div className='w-full mx-auto max-w-2xl'>
+      <div className='flex flex-row items-center justify-between mt-2 mx-2 py-3 px-4 md:px-8 bg-base-100 rounded-xl shadow-sm' >
+        <div className='flex items-center gap-1'>
+          <ShoppingCartPlus className='h-8' />
+          <h1 className='font-extrabold text-2xl text-base-content'>Grovio</h1>
+        </div>
+        <div>
+          <span className='badge badge-neutral'>{name}</span>
+        </div>
+        <div>
+          <button className='btn btn-ghost btn-sm' onClick={e => handlelogout(e)}>Odhlásiť sa</button>
         </div>
       </div>
     </div>

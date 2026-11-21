@@ -3,12 +3,12 @@ import { useItemContext } from './../../context/ItemContext'
 import Units from './UnitsContainer'
 import QuantitySetter from './QuantitySetter'
 
-export default function AddForm () {
+export default function AddForm ( {setOpen}) {
   const {addItem, setIsOpen, isLoading} = useItemContext()
 
   const [itemName, setItemName] = useState('') 
   const [quantity, setQuantity] = useState(1)
-  const [unit, setUnit] = useState('pc')
+  const [unit, setUnit] = useState('KS')
 
   
   const handleSubmit = (e) => {
@@ -32,19 +32,24 @@ export default function AddForm () {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <fieldset className='fieldset flex flex-col items-start'>
-          <legend className='fieldset-legend text-xl'>Add New Item</legend>
 
-          <label className='fieldset-label'>Item Name</label>
+        <fieldset className='fieldset flex flex-col items-start'>
+          <legend className='fieldset-legend text-xl'>Pridať položku</legend>
+
+          <label className='fieldset-label'>Názov položky</label>
           <input className='input w-full' type='text' value={itemName} onChange={(e) => setItemName(e.target.value)} required />
 
-          <label className='fildset-label'>Quantity</label>
+          <label className='fieldset-label mt-8'>Množstvo</label>
           <QuantitySetter quantity={quantity} setQuantity={setQuantity} />
 
           <Units unit={unit} setUnit={setUnit} />
         </fieldset>
-      
-        <button className='btn btn-accent w-full' disabled={isLoading} type='submit'>Add</button>
+
+        <div className='mt-8 flex flex-row gap-3 w-full justify-center'> 
+          <button className='btn btn-primary w-30' disabled={isLoading} type='submit'>Pridať</button>
+          <button className='btn btn-soft w-30 hover:text-error' type='button' onClick={() => setOpen(false)}>Zatvoriť</button>
+        </div>
+
       </form>
     </>
   )

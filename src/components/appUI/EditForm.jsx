@@ -3,7 +3,7 @@ import { useItemContext } from './../../context/ItemContext'
 import Units from './UnitsContainer'
 import QuantitySetter from './QuantitySetter'
 
-export default function EditForm () {
+export default function EditForm ( { setOpen }) {
 
   const { itemToEdit, updateItem, isLoading} = useItemContext()
 
@@ -25,12 +25,12 @@ export default function EditForm () {
   return (
     <form onSubmit={e => handleSubmit(e)}>
       <fieldset className='fieldset'>
-        <legend className='fieldset-legend text-xl'>Edit<span>'{itemToEdit.title}'</span>Item</legend>
+        <legend className='fieldset-legend text-xl'>Upraviť položku</legend>
 
-        <label className='fieldset-label'>Item Name</label>
+        <label className='fieldset-label'>Názov položky</label>
         <input className='input w-full' placeholder={title} type='text' value={newTitle} onChange={e => setNewTitle(e.target.value)}required />
 
-        <label className='fieldset-label'>Quantity</label>
+        <label className='mt-8 fieldset-label'>Množstvo</label>
         <QuantitySetter quantity={newQuantity} setQuantity={setNewQuantity} />
         
 
@@ -38,7 +38,11 @@ export default function EditForm () {
 
       </fieldset>
 
-      <button className='btn btn-accent w-full' type='submit' disabled={isLoading}>Submit</button>
+      <div className='mt-8 flex flex-row gap-3 w-full justify-center'> 
+          <button className='btn btn-primary w-30' disabled={isLoading} type='submit'>Uložiť</button>
+          <button className='btn btn-soft w-30 hover:text-error' type='button' onClick={() => setOpen(false)}>Zatvoriť</button>
+      </div>
+
     </form>
   )
 }

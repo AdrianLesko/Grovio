@@ -11,33 +11,27 @@ export default function AddItemContainer ({ setFilterVal }) {
   
 
   return (
-    <div className='card w-full bg-accent shadow-md h-auto mt-2 py-1 px-3 mb-2 flex flex-wrap flex-row items-center'>
-      <div id='list-info' className='flex flex-row gap-5'>
-        <label className='label'>
-          To Buy:
-          <span>{notBoughtCount}</span>
-        </label>
-        <label className='label'>
-          Bought: 
-          <span>{boughtCount}</span>
-        </label>
+    <div className='flex flex-wrap gap-y-4 flex-row justify-between items-center bg-base-100 border border-base-300 rounded-xl shadow-sm p-4 '>
+      <div id='list-info' className='flex flex-row gap-2'>
+        <div className='badge badge-sm badge-soft text-base-content'>Na nákup: {notBoughtCount}</div>
+        <div className='badge badge-sm badge-soft text-base-content'>Kúpené: {boughtCount}</div>
       </div>
       
-      <div className='ml-auto w-1/2 flex flex-row justify-end items-center gap-4 '>
-        <select onChange={e => setFilterVal(e.target.value)} className='select h-3/4 w-28 sm:w-40 '>
+      <div className='flex flex-row items-center gap-2'>
+        <select onChange={e => setFilterVal(e.target.value)} className='select select-sm'>
           <option value='all'>All</option>
           <option value='to-buy'>To buy</option>
           <option value='bought'>Bought</option>
         </select>
         
         <button 
-          className='btn btn-circle btn-sm bg-white border border-accent text-accent text-xl flex items-center justify-center'
+          className='btn btn-primary btn-sm'
           onClick={() => {
             setIsOpen(true)
             setModalType('add')
           }}
         >
-            +
+            Pridať
         </button>
       </div>
       

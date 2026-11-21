@@ -31,21 +31,17 @@ export default function DashboardPage () {
     <>
       <ItemContext.Provider value={{items,isLoading, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
           <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            {modalType === 'add' && <AddForm />}
-            {modalType === 'edit' && <EditForm />}
+            {modalType === 'add' && <AddForm setOpen={setIsOpen} />}
+            {modalType === 'edit' && <EditForm setOpen={setIsOpen} />}
           </Modal>
 
           <ToastError error={error} setError={setError}/>
 
-          
-
-          <div className='flex flex-col h-dvh'>
+    
+          <div className='flex flex-col bg-base-200'>
               <Header />
               
               <Hero />
-              
-              <Footer />
-
           </div>
         </ItemContext.Provider>
     </>

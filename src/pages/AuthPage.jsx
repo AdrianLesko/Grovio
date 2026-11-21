@@ -34,39 +34,51 @@ export default function AuthPage () {
 
   return (
   <>
-    <div className='h-full w-full bg-base-100 flex flex-col items-center justify-center'>
-      <div className='px-10 py-14 bg-base-200 rounded-2xl shadow-xl'>
-        <div id='auth-switcher' className='flex flex-row'>
-          <button type='button' className={`btn btn-xs ${isLogin === true && 'btn-primary'}`} onClick={() => setIsLogin(true)}> prihlasenie</button>
-          <button type='button' className={`btn btn-xs ${isLogin === false && 'btn-primary'}`} onClick={() => setIsLogin(false)}> registracia</button>
+    <div className='flex-1 w-full px-4 py-8 bg-base-200 flex flex-col items-center justify-center'>
+      <div className='p-6 md:p-8 border border-base-300 bg-base-100 rounded-xl shadow-xl w-full max-w-sm sm:max-w-md'>
+        <div id='auth-switcher' className='flex flex-row mb-8'>
+          <div className="join">
+            <button type='button' className={`join-item btn ${isLogin === true && 'btn-primary'}`} onClick={() => setIsLogin(true)}>Prihlásenie</button>
+            <button type='button' className={`join-item btn ${isLogin === false && 'btn-primary'}`} onClick={() => setIsLogin(false)}>Registrácia</button>
+          </div>
         </div>
+
         <form onSubmit={e => isLogin ? handleLogin(e) : handleRegister(e)}>
-          <fieldset className='fieldset rounded-box w-xs p-4'>
-            <legend className='fieldset-legend'>{isLogin ? 'Prihlásenie' : 'Registrácia'}</legend>
+          <fieldset className='fieldset rounded-box'>
+            <legend className='fieldset-legend mb-4'>{isLogin ? 'Prihlásenie' : 'Registrácia'}</legend>
             <ErrorToast error={error} />
             {!isLogin && (
-              <>
-                <label className='label'>Name</label>
-                <input type='text' className='input' placeholder='your name' value={name} onChange={e => setName(e.target.value)}/>
-                <label className='label'>Surname</label>
-                <input type='text' className='input' placeholder='your surname' value={surname} onChange={e => setSurname(e.target.value)} />
-              </>
+              <div className='mb-4'>
+                <label className='label'>Meno</label>
+                <input type='text' className='input w-full' placeholder='Vaše meno' value={name} onChange={e => setName(e.target.value)}/>
+                <label className='label'>Priezvisko</label>
+                <input type='text' className='input w-full' placeholder='Vaše priezvisko' value={surname} onChange={e => setSurname(e.target.value)} />
+              </div>
             )}
-            <label className='label'>Email</label>
-            <input type='email' className='input' placeholder='email' autoComplete='email' value={email} onChange={e => setEmail(e.target.value)} />
-            <label className='label'>Password</label>
-            <input type={showPass ? 'text' : 'password'} className='input'
-              placeholder='password'
-              autoComplete={isLogin ? 'current-password' : 'new-password'}
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              />
-        
-            <div className='flex flex-row'>
-              <input type='checkbox' checked={showPass} onChange={ () => setShowPass(prev => !prev)} />
-              <label className='label'>Show password</label>
+            <div className='mb-8'>
+              <div className="">
+                <label className='label'>Email</label>
+                <input type='email' className='input w-full' placeholder='email' autoComplete='email' value={email} onChange={e => setEmail(e.target.value)} />
+              </div>
+              <div>
+                <label className='label'>Heslo</label>
+                <input type={showPass ? 'text' : 'password'} className='input w-full mb-2'
+                placeholder='heslo'
+                autoComplete={isLogin ? 'current-password' : 'new-password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                />
+                <div className='flex flex-row gap-2'>
+                  <input type='checkbox' className='checkbox checkbox-sm checkbox-primary' checked={showPass} onChange={ () => setShowPass(prev => !prev)} />
+                  <label className='label'>Ukázať heslo</label>
+                </div>
+              </div>
             </div>
-            <button type="submit" className='btn btn-wide btn-primary ml-auto mr-auto'>{isLogin ? 'prihlasit' : 'registrovat'}</button>
+            
+            
+        
+            
+            <button type="submit" className='btn w-full btn-primary ml-auto mr-auto'>{isLogin ? 'prihlasit' : 'registrovat'}</button>
           </fieldset>
         </form>
       </div>

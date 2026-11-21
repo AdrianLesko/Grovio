@@ -1,5 +1,8 @@
-import logoImg from '../assets/logo.png'
-import { useNavigate } from 'react-router-dom'
+
+import { Link, useNavigate } from 'react-router-dom'
+import heroImg from '../assets/hero-mockups.png'
+import { Zap, Users, Smartphone } from 'lucide-react'
+
 
 export default function LandingPage () {
   const navigate = useNavigate()
@@ -10,44 +13,61 @@ export default function LandingPage () {
   }
 
   return (
-    <div className='border min-h-full border-red-500'>
-      <div className='hero bg-base-100 shadow-md rounded-2xl h-100'>
-        <div className='hero-content text-center'>
-          <div className='max-w-md'>
-            <div className='flex flex-row justify-center items-center gap-2'>
-              <img src={logoImg} className='h-8' />
-              <h1 className='font-bold text-5xl'>Grovio!</h1>
-            </div>
-            <p className='py-6'>
-              Pridávajte položky v reálnom čase, organizujte nákupy a majte v chladničke vždy to, čo potrebujete
+    <div id='main-page' className='w-full max-w-4xl mx-auto flex flex-col'>
+      <section id='hero-section' className='flex flex-col w-full items-center mt-12 px-4'>
+        <h1 className='font-extrabold text-4xl md:text-5xl text-center'>
+          <span className='text-base-content'>Žiadne zabudnuté nákupy</span>
+          <br/>
+          <span className='text-primary'>a chaos v rodine</span>
+        </h1>
+        <p className='max-w-2xl mx-auto text-lg md:text-xl text-center text-base-content/70 mt-6 px-4 py-8'>
+          Zabudnite na papieriky a nekonečné vypisovanie správ z uličiek supermarketu. Majte spoločný zoznam v mobile a odškrtávajte nákupy spoločne.
+        </p>
+        <Link to='/login' className='btn btn-primary btn-lg'>Upratať nákupy</Link> 
+      </section> 
+
+      <section id='image-section' className='w-full flex p-4 md:p-12 flex-col items-center justify-center mt-12 bg-base-100 border border-base-300 rounded-xl shadow-xl'>
+        <img src={heroImg} alt='Snímky obrazovky aplikácie' />
+      </section>
+
+      <section id='cards' className='mt-12 mb-12'>
+        <div className='
+          grid grid-cols-1 grid-rows-3
+            md:grid-cols-3 md:grid-rows-1
+            gap-6
+            
+        '>
+          <div className='bg-base-100 rounded-xl border border-base-300 shadow-sm w-full max-w-75 mx-auto p-6 flex flex-col gap-4 items-center justify-around'>
+            <Zap className='text-primary'/>
+            <h3 className='font-bold text-xl text-center text-base-content'>Bleskový prehľad v obchode</h3>
+            <p className='text-center text-sm text-base-content/70'>
+              Okamžite vidíte, čo treba kúpiť a čo už je v košíku. Položky odškrtnete jedným ťuknutím palca.
             </p>
-            <button className='btn btn-primary' onClick={e => handleLogin(e)}>Začať!</button>
           </div>
-        </div>
-      </div>
 
-      <div className='flex mt-2 gap-2 flex-col sm:items-center md:flex-row md:justify-center  '>
-        <div className="card card-md text-center bg-base-100 shadow-md md:w-[30%] sm:w-5/6">
-          <div className='card-body'>
-            <h2 className='card-title mx-auto'>⚡️ Bleskový prehľad</h2>
-            <p className='font-semibold'>Kúpene vs. na nákup</p>
-          </div>     
-        </div>
+          <div className='bg-base-100 rounded-xl border border-base-300 shadow-sm w-full max-w-75 mx-auto p-6 flex flex-col gap-4 items-center justify-around'>
+            <Users className='text-primary' />
+            <h3 className='font-bold text-xl text-center text-base-content'>Zdieľanie s rodinou</h3>
+            <p className='text-center text-sm text-base-content/70'>
+              Partner pridá mlieko, zatiaľ čo vy už stojíte v obchode. Zoznam je vždy aktuálny a bez zbytočných telefonátov.
+            </p>
+          </div>
 
-        <div className="card card-md text-center bg-base-100 shadow-md md:w-[30%] sm:w-5/6">
-          <div className='card-body'>
-            <h2 className='card-title mx-auto'>👥 Zdieľanie s rodinou</h2>
-            <p className='font-semibold'>Všetci vidia zmeny</p>
-          </div>     
+          <div className='bg-base-100 rounded-xl border border-base-300 shadow-sm w-full max-w-75 mx-auto p-6 flex flex-col gap-4 items-center justify-around'>
+            <Smartphone className='text-primary' />
+            <h3 className='font-bold text-xl text-center text-base-content'>Vždy po ruke</h3>
+            <p className='text-center text-sm text-base-content/70'>
+              Žiadne zabudnuté papieriky na stole. Váš nákupný zoznam máte so sebou v každom supermarkete.
+            </p>
+          </div>
+         
         </div>
+      </section>
 
-        <div className="card card-md text-center bg-base-100 shadow-md md:w-[30%] sm:w-5/6">
-          <div className='card-body'>
-            <h2 className='card-title mx-auto'>📱 Vždy po ruke</h2>
-            <p className='font-semibold'>Iba na dosah vrecka</p>
-          </div>     
-        </div>
-      </div> 
+      <section id='end-cta' className='mb-16 flex flex-col items-center gap-4'>
+        <h3 className='text-center text-2xl font-bold text-base-content'>Nákupy bez stresu?</h3> 
+        <Link to='/login' className='btn btn-primary btn-lg mx-auto'>Vyskúšať zadarmo</Link>
+      </section>
 
     </div>
   )

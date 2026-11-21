@@ -22,19 +22,19 @@ export default function ShoppingList ({ filterVal }) {
   return !isLoading ?
     items.length > 0 ?
     (
-      <ul className='list bg-base-200 rounded-box h-full flex flex-col gap-1'>
+      <ul className='list rounded-box h-full flex flex-col gap-2'>
         {filteredItems.map(item => <Item item={item} key={item.id} />)}
       </ul>
     ) :
     (
       <div className='bg-base-200 rounded-box h-full flex flex-col gap-1 items-center justify-center'>
-        <span className='text-gray-500 font-medium'>No items yet.</span>
+        <span className='text-base-content/60 font-medium'>No items yet.</span>
       </div>
     )
   :
   (
     <div className='bg-base-200 rounded-box h-full flex flex-col gap-1 items-center justify-center'>
-      <span className='loading loading-spinner text-warning'></span>
+      <span className='loading loading-spinner text-primary'></span>
     </div>
   )
 }
