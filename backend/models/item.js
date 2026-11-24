@@ -11,19 +11,26 @@ const itemSchema = mongoose.Schema({
   },
   unit: {
     type: String,
-    default: () => 'pc'
+    default: () => 'KS'
   },
   isBought: {
     type: Boolean,
     default: () => false
   }, 
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
   createdAt: {
     type: Date,
     default: () => Date.now()
+  },
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group',
+    index: true,
+    required: true
+  },
+  addedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 })
 

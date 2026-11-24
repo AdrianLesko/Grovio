@@ -7,7 +7,10 @@ import { handleNotFoundError, handleFinalError } from './middleware/error.middle
 
 import itemRouter from './routers/itemRouter.js'
 import authRouter from './routers/authRouter.js'
+import groupRouter from './routers/groupRouter.js'
 
+import { verifyToken } from './middleware/auth.middleware.js'
+import { checkGroup } from './middleware/checkGroup.middleware.js'
 
 
 const app = express()
@@ -18,7 +21,8 @@ app.use(cors({
 
 
 app.use('/api/auth', authRouter)
-app.use('/api/items', itemRouter)
+app.use('/api/groups/:groupId/items', verifyToken, checkGroup, itemRouter)
+app.use('/api/groups/', groupRouter)
 
 
 app.use(handleNotFoundError)

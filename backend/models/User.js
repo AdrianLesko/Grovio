@@ -1,13 +1,10 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
-  },
-  surname: {
-    type: String,
-    required: true,
+    trim: true,
   },
   email: {
     type: String,
@@ -18,11 +15,7 @@ const userSchema = new mongoose.Schema({
   passwordHash: {
     type: String, 
     required: true
-  },
-  items: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Item'
-  }]
+  }
 })
 
 userSchema.set('toJSON', {

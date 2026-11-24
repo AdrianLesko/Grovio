@@ -1,14 +1,13 @@
 import express from 'express'
 import { getItems, getItem, createItem, deleteItem, updateItem} from '../controllers/itemController.js'
-import { verifyToken } from '../middleware/auth.middleware.js'
 
-const router = express.Router()
+const router = express.Router( {mergeParams: true})
 
-router.get('/', verifyToken, getItems)
-router.get('/:id', verifyToken, getItem)
-router.post('/',verifyToken, createItem)
-router.delete('/:id', verifyToken, deleteItem)
-router.patch('/:id', verifyToken, updateItem)
+router.get('/', getItems)
+router.get('/:id', getItem)
+router.post('/', createItem)
+router.delete('/:id', deleteItem)
+router.patch('/:id', updateItem)
 
 
 export default router

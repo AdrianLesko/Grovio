@@ -68,8 +68,8 @@ export default function AuthPage () {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 />
-                <div className='flex flex-row gap-2'>
-                  <input type='checkbox' className='checkbox checkbox-sm checkbox-primary' checked={showPass} onChange={ () => setShowPass(prev => !prev)} />
+                <div className='flex flex-row items-center gap-2'>
+                  <input type='checkbox' className='checkbox checkbox-xs checkbox-primary' checked={showPass} onChange={ () => setShowPass(prev => !prev)} />
                   <label className='label'>Ukázať heslo</label>
                 </div>
               </div>
