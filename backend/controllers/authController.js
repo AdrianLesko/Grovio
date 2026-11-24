@@ -4,9 +4,9 @@ import jwt from 'jsonwebtoken'
 
 export async function register (req,res,next) {
   try {
-    const {name, surname, email, password } = req.body
+    const {username, email, password } = req.body
 
-    if (!name || !surname || !email || !password){
+    if (!username || !email || !password){
       const err = new Error('Are fields must be filled corectlly')
       err.status = 400
       throw err
@@ -29,8 +29,7 @@ export async function register (req,res,next) {
     const passwordHash = await bcrypt.hash(password, 10)
 
     const newUser = new User({
-      name,
-      surname,
+      username,
       email, 
       passwordHash
     })
@@ -38,7 +37,7 @@ export async function register (req,res,next) {
     await newUser.save()
 
     const tokenForUser = {
-      name: newUser.name,
+      username: newUser.username,
       email: newUser.email,
       id: newUser.id
     }
@@ -79,7 +78,7 @@ export async function login (req, res, next) {
     }
 
     const tokenForUser = {
-     name: user.name,
+     username: user.username,
      email: user.email,
      id: user.id
     }

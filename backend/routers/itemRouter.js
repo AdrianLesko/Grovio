@@ -4,7 +4,6 @@ import { getItems, getItem, createItem, deleteItem, updateItem} from '../control
 const router = express.Router( {mergeParams: true})
 
 router.get('/', getItems)
-router.get('/:id', getItem)
 router.post('/', createItem)
 router.delete('/:id', deleteItem)
 router.patch('/:id', updateItem)

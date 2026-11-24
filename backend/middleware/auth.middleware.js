@@ -11,9 +11,7 @@ function getToken (req) {
 
 export function verifyToken (req, res, next) {
   try {
-    console.log(getToken(req))
     const decoded = jwt.verify(getToken(req), process.env.JWT_SECRET)
-    
     if (decoded) {
       req.user = decoded
       next()
