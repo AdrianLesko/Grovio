@@ -1,7 +1,8 @@
-const url = 'http://localhost:8000/api/auth'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 export const userRegister = async (username, email, password) => {
-  const response = await fetch(url + '/register', {
+  const response = await fetch(API_URL + '/auth/register', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -19,7 +20,7 @@ export const userRegister = async (username, email, password) => {
 } 
 
 export const userLogin = async (email, password) => {
-  const response = await fetch(url + '/login', {
+  const response = await fetch(API_URL + '/auth/login', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'}, 
     body: JSON.stringify({email, password})

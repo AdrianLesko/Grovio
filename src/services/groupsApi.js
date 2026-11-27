@@ -1,7 +1,8 @@
-const backend_url = 'http://localhost:8000/api'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 export const getGroup = async(token, groupId) => {
-  const response = await fetch(backend_url + `/groups/${groupId}`, {
+  const response = await fetch(API_URL + `/groups/${groupId}`, {
     method: 'GET',
     headers: {'Authorization': `Bearer ${token}`},
   })
@@ -16,7 +17,7 @@ export const getGroup = async(token, groupId) => {
 }
 
 export const getGroups = async (token) => {
-  const response = await fetch(backend_url + '/groups/', {
+  const response = await fetch(API_URL + '/groups/', {
     method: 'GET',
     headers: {'Authorization':`Bearer ${token}`}
   }
@@ -32,7 +33,7 @@ export const getGroups = async (token) => {
 }
 
 export const createGroup = async (token, name) => {
-  const response = await fetch(backend_url + '/groups/', {
+  const response = await fetch(API_URL + '/groups/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json', 
@@ -51,7 +52,7 @@ export const createGroup = async (token, name) => {
 }
 
 export const joinGroup = async (token, code) => {
-  const response = await fetch(backend_url + '/groups/join', {
+  const response = await fetch(API_URL + '/groups/join', {
     method: 'POST',
     headers: {
       'Content-Type':'application/json', 
@@ -72,7 +73,7 @@ export const joinGroup = async (token, code) => {
 }
 
 export const deleteGroup = async (token, groupId) => {
-  const response = await fetch(backend_url + `/groups/${groupId}`, {
+  const response = await fetch(API_URL + `/groups/${groupId}`, {
     method: 'DELETE',
     headers: {'Authorization': `Bearer ${token}`}
   })

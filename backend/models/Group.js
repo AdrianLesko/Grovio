@@ -5,6 +5,7 @@ const GroupSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim:true,
+    maxlength: 80,
   },
   connectionCode: {
     type: String,

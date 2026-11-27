@@ -1,16 +1,10 @@
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero-mockups.png'
 import { Zap, Users, Smartphone } from 'lucide-react'
 
 
 export default function LandingPage () {
-  const navigate = useNavigate()
-
-  const handleLogin = e => {
-    e.preventDefault()
-    navigate('/login')
-  }
 
   return (
     <div id='main-page' className='w-full max-w-4xl mx-auto flex flex-col'>

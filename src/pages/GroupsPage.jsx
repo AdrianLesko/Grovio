@@ -1,5 +1,5 @@
 import { useGroups } from '../hooks/useGroups.jsx'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import Modal from '../components/appUI/Modal.jsx'

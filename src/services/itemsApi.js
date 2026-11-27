@@ -1,7 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 const getUrl = (groupId) => {
-  return `http://localhost:8000/api/groups/${groupId}/items`
-}
+  return API_URL + `/groups/${groupId}/items`
+} 
+
 const getAll = async ( token, groupId ) => {
  
   const response = await fetch(getUrl(groupId), {

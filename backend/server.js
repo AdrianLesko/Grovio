@@ -3,6 +3,8 @@ import 'dotenv/config'
 const port = process.env.PORT
 import mongoose from 'mongoose'
 import cors from 'cors'
+import helmet from 'helmet'
+import { rateLimit } from 'express-rate-limit'
 import { handleNotFoundError, handleFinalError } from './middleware/error.middleware.js'
 
 import itemRouter from './routers/itemRouter.js'
@@ -12,15 +14,24 @@ import groupRouter from './routers/groupRouter.js'
 import { verifyToken } from './middleware/auth.middleware.js'
 import { checkGroup } from './middleware/checkGroup.middleware.js'
 
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 25,
+  message: {msg: 'Príliš veľa pokusov o prihlásenie. Skúste to znova o 15 minút'},
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+})
 
+const allowedOrigins = ['http://localhost:5173', process.env.CLIENT_URL].filter(Boolean)
 const app = express()
+app.use(helmet())
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: allowedOrigins
 }))
 
 
-app.use('/api/auth', authRouter)
+app.use('/api/auth',authLimiter, authRouter)
 app.use('/api/groups/:groupId/items', verifyToken, checkGroup, itemRouter)
 app.use('/api/groups/', groupRouter)
 

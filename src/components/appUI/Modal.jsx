@@ -1,5 +1,5 @@
 
-export default function Modal ( {isOpen, setIsOpen, children} ) {
+export default function Modal ( {isOpen, children} ) {
   if (!isOpen) return null
   
   return (
