@@ -21,6 +21,7 @@ export default function PublicLayout (){
       <footer className='px-4 md:px-8 w-full max-w-5xl mx-auto mb-2'>
         <div className='bg-base-100 rounded-xl border border-base-300 px-4 md:px-8 py-3 flex items-center justify-center shadow-sm'>
           <p className='text-base-content/60 text-xs'>© 2026 Adrián Leško. Všetky práva vyhradené.</p>
+          <p className='text-base-content/60 text-xs'><span className='font-semibold'>Contact: </span>lesko.ado.adrian@gmail.com</p>
         </div>
       </footer>
     </div>
