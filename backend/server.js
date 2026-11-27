@@ -22,7 +22,14 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
 })
 
-const allowedOrigins = ['http://localhost:5173', process.env.CLIENT_URL].filter(Boolean)
+const allowedOrigins = [
+  'http://localhost:5173',
+   process.env.CLIENT_URL,
+  'https://grovio.site',
+  'https://www.grovio.site',
+  'https://grovio-umber.vercel.app'
+].filter(Boolean)
+
 const app = express()
 app.use(helmet())
 app.use(express.json())
