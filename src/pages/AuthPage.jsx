@@ -19,6 +19,7 @@ export default function AuthPage () {
     e.preventDefault()
     const success = await register(username, email, password)
     if (success) {
+      window.umami?.track('user_registered')
       navigate('/groups')
     }
   }
@@ -27,6 +28,7 @@ export default function AuthPage () {
     e.preventDefault()
     const success = await login(email, password)
     if (success) {
+      window.umami?.track('user_logged_in')
       navigate('/groups')
     }
   }

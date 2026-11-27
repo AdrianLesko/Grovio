@@ -17,7 +17,7 @@ export default function LandingPage () {
         <p className='max-w-2xl mx-auto text-lg md:text-xl text-center text-base-content/70 mt-6 px-4 py-8'>
           Zabudnite na papieriky a nekonečné vypisovanie správ z uličiek supermarketu. Majte spoločný zoznam v mobile a odškrtávajte nákupy spoločne.
         </p>
-        <Link to='/login' className='btn btn-primary btn-lg'>Upratať nákupy</Link> 
+        <Link to='/login' className='btn btn-primary btn-lg' data-umami-event="cta_get_started">Upratať nákupy</Link> 
       </section> 
 
       <section id='image-section' className='w-full flex p-4 md:p-12 flex-col items-center justify-center mt-12 bg-base-100 border border-base-300 rounded-xl shadow-xl'>
@@ -60,7 +60,7 @@ export default function LandingPage () {
 
       <section id='end-cta' className='mb-16 flex flex-col items-center gap-4'>
         <h3 className='text-center text-2xl font-bold text-base-content'>Nákupy bez stresu?</h3> 
-        <Link to='/login' className='btn btn-primary btn-lg mx-auto'>Vyskúšať zadarmo</Link>
+        <Link to='/login' className='btn btn-primary btn-lg mx-auto' data-umami-event="cta_get_started_2">Vyskúšať zadarmo</Link>
       </section>
 
     </div>

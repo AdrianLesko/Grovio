@@ -36,6 +36,7 @@ export default function GroupsPage () {
     const newGroup = await createGroup(name)
   
     if (newGroup) {
+      window.umami?.track('group_created')
       setIsOpen(false)
     }
 
@@ -45,6 +46,7 @@ export default function GroupsPage () {
     const newGroup = await joinGroup(code)
 
     if (newGroup) {
+      window.umami?.track('group_joined')
       setIsOpen(false)
       navigate(`/groups/${newGroup.id}`)
     }

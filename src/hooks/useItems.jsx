@@ -63,6 +63,7 @@ export function useItems() {
       setIsLoading(true)
       const item = await itemsApi.createItem(newItem, token, groupId)
       setItems((prev) => [item, ...prev]);
+      window.umami?.track('item_added')
     } catch (err) {
       setError(err)
     } finally {
