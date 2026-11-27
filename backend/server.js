@@ -42,7 +42,7 @@ app.use('/api/auth',authLimiter, authRouter)
 app.use('/api/groups/:groupId/items', verifyToken, checkGroup, itemRouter)
 app.use('/api/groups/', groupRouter)
 
-
+app.get('/api/health', (req,res) => res.status(200).send('OK'))
 app.use(handleNotFoundError)
 app.use(handleFinalError) 
 
