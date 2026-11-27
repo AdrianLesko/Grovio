@@ -1,4 +1,4 @@
-export function handleNotFoundError (res,req,next) {
+export function handleNotFoundError (req,res,next) {
   const error = new Error('Invalid request on client side')
   error.status = 404
   next(error)

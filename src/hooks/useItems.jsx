@@ -32,7 +32,19 @@ export function useItems() {
         setIsLoading(false)
       }
     };
-    getItems();
+    getItems()
+    
+    const interval = setInterval(() => {if (document.visibilityState === 'visible'){ 
+      getItems()
+    }}, 5000)
+
+    window.addEventListener('focus', getItems)
+
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('focus', getItems)
+    }
   }, [token, groupId]);
 
   const leaveOrDeleteGroup = async () => {
