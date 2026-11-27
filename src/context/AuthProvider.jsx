@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const register = async (name, surname, email, password) => {
+  const register = async (username, email, password) => {
     try {
       setIsLoading(true)
-      const {token, user} = await userRegister(name, surname, email, password)
+      const {token, user} = await userRegister(username, email, password)
 
       setUser({...user, token: token})
       setToken(token)

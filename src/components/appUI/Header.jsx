@@ -8,7 +8,7 @@ export default function Header () {
 
   const {logout} = useAuthContext()
   const { user } = useAuthContext()
-  const name = user.name
+  const username = user.username
 
   const navigate = useNavigate()
   
@@ -28,7 +28,7 @@ export default function Header () {
           <h1 className='font-extrabold text-2xl text-base-content'>Grovio</h1>
         </div>
         <div>
-          <span className='badge badge-neutral'>{name}</span>
+          <span className='badge badge-neutral'>{username}</span>
         </div>
         <div>
           <button className='btn btn-ghost btn-sm' onClick={e => handlelogout(e)}>Odhlásiť sa</button>

@@ -1,5 +1,14 @@
 import { generateCode } from '../utils/generateCode.js'
 import Group from '../models/Group.js'
+import Item from '../models/item.js'
+
+export async function getGroupById (req,res,next) {
+  try {
+    res.status(200).json(req.group)
+  } catch (err) {
+    next(err)
+  }
+}
 
 export async function createGroup ( req,res,next ) {
   try {
@@ -72,10 +81,14 @@ export async function joinGroup ( req, res, next ) {
       err.status = 404
       throw err
     }
-    if (!group.members.some(memberId => memberId.toString() === user.id)) {
-      group.members = [user.id, ...group.members]
-      await group.save()
+    if (group.members.some(memberId => memberId.toString() === user.id)) {
+      const err = new Error('V tejto skupine sa už nachádzate')
+      err.status = 400 
+      throw err
     }
+
+    group.members = [user.id, ...group.members]
+    await group.save()
     
 
     res.status(200).json(group)
@@ -92,11 +105,38 @@ export async function getGroups (req,res,next) {
       throw err
     }
 
-    const groups = await Group.find({ members:user.id}).sort({ createdAt: -1})
+    const groups = await Group.find({ members:user.id}).populate('members', 'username').sort({ createdAt: -1})
 
     res.status(200).json(groups)
   } catch (err) {
     next(err)
   }
   
+}
+
+export async function deleteGroup (req,res,next){
+  try {
+
+    const user = req.user
+    const group = req.group
+
+    const isOwner = Boolean(group.owner.toString() === user.id)
+
+    if (isOwner) {
+      await Item.deleteMany({group: group.id})
+      await Group.deleteOne({_id: group.id})
+      res.status(200).json({message: 'ok'})
+      return
+    }
+
+    if (!isOwner) {
+      group.members = group.members.filter(memberId => memberId.toString() !== user.id)
+      await group.save()
+      res.status(200).json({message: 'ok'})
+      return 
+    }
+
+  } catch (err) {
+    next(err)
+  }
 }

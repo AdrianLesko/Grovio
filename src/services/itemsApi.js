@@ -1,7 +1,10 @@
-const url = 'http://localhost:8000/api/items'
-const getAll = async ( token ) => {
+
+const getUrl = (groupId) => {
+  return `http://localhost:8000/api/groups/${groupId}/items`
+}
+const getAll = async ( token, groupId ) => {
  
-  const response = await fetch(url, {
+  const response = await fetch(getUrl(groupId), {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
@@ -16,20 +19,10 @@ const getAll = async ( token ) => {
   return data
 }
 
-const getItem = async (id) => {
-    const response = await fetch(`${url}/${id}`)
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.msg)
-    }
-    const data = await response.json()
-    return data
-}
-
-const createItem = async (item, token) => {
+const createItem = async (item, token, groupId) => {
   if (!item) throw new Error('item is missing')
 
-  const response = await fetch(url, {
+  const response = await fetch(getUrl(groupId), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,8 +42,8 @@ const createItem = async (item, token) => {
 }
 
 
-const deleteItem = async (id, token) => {
-  const response = await fetch(`${url}/${id}`, {
+const deleteItem = async (id, token, groupId) => {
+  const response = await fetch( getUrl(groupId) + `/${id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -64,8 +57,8 @@ const deleteItem = async (id, token) => {
   return
 }
 
-const toggleItem = async (item, token) => {
-  const response = await fetch(`${url}/${item.id}`, {
+const toggleItem = async (item, token, groupId) => {
+  const response = await fetch(getUrl(groupId) + `/${item.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -82,8 +75,8 @@ const toggleItem = async (item, token) => {
   return data
 }
 
-const patchItem = async (item, token) => {
-  const response = await fetch(`${url}/${item.id}`, {
+const patchItem = async (item, token, groupId) => {
+  const response = await fetch(getUrl(groupId) + `/${item.id}`, {
     method: 'PATCH', 
     headers: {
       'Content-Type': 'application/json',
@@ -100,4 +93,4 @@ const patchItem = async (item, token) => {
   return data
 }
 
-export {getAll, getItem, createItem, deleteItem, toggleItem, patchItem}
+export {getAll, createItem, deleteItem, toggleItem, patchItem}

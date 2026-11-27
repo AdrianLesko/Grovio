@@ -10,11 +10,16 @@ import ToastError from '../components/appUI/Toast.jsx'
 
 import {useAuthContext} from '../context/AuthContext.js'
 
+
+
 export default function DashboardPage () {
+
 
   const { 
     error,
     setError,
+    group,
+    leaveOrDeleteGroup,
     items,
     isOpen,
     setIsOpen, 
@@ -29,7 +34,7 @@ export default function DashboardPage () {
 
 
     <>
-      <ItemContext.Provider value={{items,isLoading, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
+      <ItemContext.Provider value={{group, leaveOrDeleteGroup, items,isLoading, setModalType, setIsOpen, addItem, updateItem, deleteItem, toggleItem, openEdit, itemToEdit}}>
           <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
             {modalType === 'add' && <AddForm setOpen={setIsOpen} />}
             {modalType === 'edit' && <EditForm setOpen={setIsOpen} />}

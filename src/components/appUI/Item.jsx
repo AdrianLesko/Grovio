@@ -18,6 +18,7 @@ export default function Item ( { item } ) {
               {item.title}
             </h3>
             <span className='badge badge-sm badge-soft shrink-0'>{item.quantity} {item.unit}</span>
+            <span className='badge badge-sm badge-primary'>{item.addedBy?.username}</span>
           </div>
       </div>
 

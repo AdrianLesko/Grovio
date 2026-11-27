@@ -2,11 +2,15 @@
 
 
 import { Routes, Route } from 'react-router-dom'
+
 import PublicLayout from './layouts/PublicLayout.jsx'
 import DashboardLayout from './layouts/DashboardLayout.jsx'
+
 import LandingPage from './pages/LandingPage.jsx'
 import AuthPage from './pages/AuthPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
+import GroupsPage from './pages/GroupsPage.jsx'
+
 import ProtectedRoute from './components/publicUI/ProtectedRoute.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -22,12 +26,13 @@ function App() {
             <Route index element={ <LandingPage />} />
             <Route path='/login' element={ <AuthPage /> } />
           </Route>
-          <Route path='/dashboard' element={ 
+          <Route path='/groups' element={ 
             <ProtectedRoute>
               <DashboardLayout />
             </ProtectedRoute>
           }>
-            <Route index element={ <DashboardPage />} />
+            <Route index element={ <GroupsPage />} />
+            <Route path=':groupId' element={<DashboardPage />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

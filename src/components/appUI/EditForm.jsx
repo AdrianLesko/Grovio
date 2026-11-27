@@ -39,8 +39,8 @@ export default function EditForm ( { setOpen }) {
       </fieldset>
 
       <div className='mt-8 flex flex-row gap-3 w-full justify-center'> 
-          <button className='btn btn-primary w-30' disabled={isLoading} type='submit'>Uložiť</button>
           <button className='btn btn-soft w-30 hover:text-error' type='button' onClick={() => setOpen(false)}>Zatvoriť</button>
+          <button className='btn btn-primary w-30' disabled={isLoading} type='submit'>Uložiť</button>
       </div>
 
     </form>

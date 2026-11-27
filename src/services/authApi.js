@@ -1,11 +1,11 @@
 const url = 'http://localhost:8000/api/auth'
 
-export const userRegister = async (name, surname, email, password) => {
+export const userRegister = async (username, email, password) => {
   const response = await fetch(url + '/register', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      name, surname, email, password
+      username, email, password
     })
   })
 

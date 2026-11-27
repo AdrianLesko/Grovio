@@ -1,5 +1,5 @@
 import express from 'express'
-import { getItems, getItem, createItem, deleteItem, updateItem} from '../controllers/itemController.js'
+import { getItems, createItem, deleteItem, updateItem} from '../controllers/itemController.js'
 
 const router = express.Router( {mergeParams: true})
 

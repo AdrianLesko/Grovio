@@ -11,16 +11,15 @@ export default function AuthPage () {
   const [isLogin, setIsLogin] = useState(true)
   const [showPass, setShowPass] = useState(false)
 
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleRegister = async (e) => {
     e.preventDefault()
-    const success = await register(name, surname, email, password)
+    const success = await register(username, email, password)
     if (success) {
-      navigate('/dashboard')
+      navigate('/groups')
     }
   }
 
@@ -28,7 +27,7 @@ export default function AuthPage () {
     e.preventDefault()
     const success = await login(email, password)
     if (success) {
-      navigate('/dashboard')
+      navigate('/groups')
     }
   }
 
@@ -49,10 +48,8 @@ export default function AuthPage () {
             <ErrorToast error={error} />
             {!isLogin && (
               <div className='mb-4'>
-                <label className='label'>Meno</label>
-                <input type='text' className='input w-full' placeholder='Vaše meno' value={name} onChange={e => setName(e.target.value)}/>
-                <label className='label'>Priezvisko</label>
-                <input type='text' className='input w-full' placeholder='Vaše priezvisko' value={surname} onChange={e => setSurname(e.target.value)} />
+                <label className='label'>Používateľské meno</label>
+                <input type='text' className='input w-full' placeholder='Vytvorte používateľské meno' value={username} onChange={e => setUsername(e.target.value)}/>
               </div>
             )}
             <div className='mb-8'>
